@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "this" {
-  name = var.name
+  bucket = var.name
 }
 
 resource "aws_s3_bucket_acl" "this" {
