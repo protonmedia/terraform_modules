@@ -8,11 +8,25 @@ This module deploys the following resources:
 ## Usage
 
 ```
+data "aws_iam_policy_document" "my_policy" {
+  statement {
+    sid = "My custom policy"
+    principals {
+      type        = "Service"
+      identifiers = ["sns.amazonaws.com"]
+    }
+    actions   = ["kms:GenerateDataKey*", "kms:Decrypt"]
+    resources = ["*"]
+    effect    = "Allow"
+  }
+}
+
 module "kms_key" {
   source                  = "git@github.com:protonmedia/terraform_modules.git//kms_key?ref=<git commit sha>"
   description             = "Key used to encrypt my CloudWatch Logs"
   alias                   = "my-application"
   deletion_window_in_days = 14 # optional (default 7)
+  policy                  = data.aws_iam_policy_document.my_policy.json
 }
 ```
 

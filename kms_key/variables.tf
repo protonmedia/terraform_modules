@@ -13,3 +13,8 @@ variable "deletion_window_in_days" {
   default     = 7
   description = "The waiting period, specified in number of days"
 }
+
+variable "policy" {
+  type        = string
+  description = "A valid policy JSON document"
+}
