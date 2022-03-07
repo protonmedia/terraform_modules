@@ -26,7 +26,7 @@ module "kms_key" {
   description             = "Key used to encrypt my CloudWatch Logs"
   alias                   = "my-application"
   deletion_window_in_days = 14 # optional (default 7)
-  policy                  = data.aws_iam_policy_document.my_policy.json
+  policy                  = jsonencode(data.aws_iam_policy_document.my_policy.json)
 }
 ```
 
