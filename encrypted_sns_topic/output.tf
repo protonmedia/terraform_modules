@@ -4,7 +4,7 @@ output "sns_arn" {
 }
 
 output "key_arn" {
-  value       = module.sns_kms_key.arn
+  value       = module.sns_kms_key.key_arn
   description = "The Amazon Resource Name (ARN) of the key"
 }
 
