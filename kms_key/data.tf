@@ -16,6 +16,6 @@ data "aws_iam_policy_document" "default" {
 data "aws_iam_policy_document" "this" {
   source_policy_documents = [
     data.aws_iam_policy_document.default.json,
-    jsondecode(var.policy)
+    jsonencode(var.policy)
   ]
 }
