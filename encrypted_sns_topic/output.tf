@@ -4,16 +4,16 @@ output "sns_arn" {
 }
 
 output "key_arn" {
-  value       = module.aws_kms_key.this.arn
+  value       = module.sns_kms_key.arn
   description = "The Amazon Resource Name (ARN) of the key"
 }
 
 output "alias_arn" {
-  value       = module.aws_kms_alias.this.arn
+  value       = module.sns_kms_key.alias_arn
   description = "The Amazon Resource Name (ARN) of the key alias"
 }
 
 output "alias" {
-  value       = module.aws_kms_key.alias
+  value       = module.sns_kms_key.alias
   description = "The key alias"
 }
