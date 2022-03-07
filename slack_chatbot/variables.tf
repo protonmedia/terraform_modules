@@ -1,3 +1,8 @@
+variable "slack_channel_name" {
+  type        = string
+  description = "The name of the Slack Channel"
+}
+
 variable "slack_channel_id" {
   type        = string
   description = "The ID of the Slack Channel."

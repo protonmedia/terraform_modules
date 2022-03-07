@@ -1,5 +1,5 @@
 resource "aws_iam_role" "chatbot_role" {
-  name               = "AWSChatbot-${module.this.context.name}-Slack-Role"
+  name               = "AWSChatbot-${var.slack_channel_name}-Slack-Role"
   path               = "/service-role/"
   assume_role_policy = data.aws_iam_policy_document.chatbot_role_policy.json
   inline_policy {
@@ -12,7 +12,7 @@ module "chatbot_slack_configuration" {
   source  = "waveaccounting/chatbot-slack-configuration/aws"
   version = "1.1.0"
 
-  configuration_name = module.this.context.name
+  configuration_name = var.slack_channel_name
   iam_role_arn       = aws_iam_role.chatbot_role.arn
   logging_level      = "ERROR"
   slack_channel_id   = var.slack_channel_id
