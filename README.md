@@ -5,4 +5,4 @@ This project consists of a set of highly opinionated AWS Terraform modules with 
 ## Technical Information
 
 * Hashicorp ~> AWS 4.1
-* Terraform ~> 1.1.5
+* Terraform ~> 1.1.7
