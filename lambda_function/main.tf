@@ -47,6 +47,6 @@ resource "aws_iam_policy" "this" {
 
 resource "aws_iam_role_policy_attachment" "default" {
   count      = length(var.custom_policies) > 0 ? 1 : 0
-  role       = aws_iam_role.role.name
+  role       = aws_iam_role.this.name
   policy_arn = join("", aws_iam_policy.custom_policies.*.arn)
 }

@@ -24,7 +24,7 @@ locals {
 
   layers = [
     aws_lambda_layer_version.this.arn,
-    lookup(local.lambdaInsightsLayers, var.aws_region, "")
+    lookup(local.lambdaInsightsLayers, data.aws_region.current.name, "")
   ]
 
   defaultLambdaPolicies = [
