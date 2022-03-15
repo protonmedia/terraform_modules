@@ -18,7 +18,7 @@ resource "aws_lambda_function" "this" {
     }
   }
   filename         = var.lambdaFilename
-  handler          = var.lhandler
+  handler          = var.handler
   layers           = local.layers
   memory_size      = var.memory_size
   runtime          = var.runtime
@@ -48,5 +48,5 @@ resource "aws_iam_policy" "this" {
 resource "aws_iam_role_policy_attachment" "default" {
   count      = length(var.custom_policies) > 0 ? 1 : 0
   role       = aws_iam_role.this.name
-  policy_arn = join("", aws_iam_policy.custom_policies.*.arn)
+  policy_arn = join("", aws_iam_policy.this.*.arn)
 }
