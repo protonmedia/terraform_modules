@@ -20,6 +20,3 @@ module "sns_topic" {
 | Name | Example |
 |------|---------|
 | sns_arn | `arn:aws:sns:us-east-1:123456789111:MyTopic` |
-| key_id | `1234abcd-12ab-34cd-56ef-1234567890ab` |
-| key_arn | `arn:aws:kms:us-east-1:123456789111:key/1234abcd-12ab-34cd-56ef-1234567890ab` |
-| alias_arn | `arn:aws:kms:us-east-1:123456789111:alias/my-application` |
