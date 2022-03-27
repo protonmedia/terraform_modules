@@ -10,7 +10,7 @@ This module deploys the following resources:
 
 ```
 module "my_chatbot" {
-  source              = "git@github.com:protonmedia/terraform_modules.git//slack_chatbot?ref=<git commit sha>"
+  source              = "git::https://github.com/protonmedia/terraform_modules.git//slack_chatbot?ref=<git commit sha>"
   slack_channel_name  = "general"
   slack_channel_id    = "C0271U4MBS6"
   slack_workspace_id  = "T02BQFRTW"

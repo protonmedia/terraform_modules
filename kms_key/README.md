@@ -22,7 +22,7 @@ data "aws_iam_policy_document" "my_policy" {
 }
 
 module "kms_key" {
-  source                  = "git@github.com:protonmedia/terraform_modules.git//kms_key?ref=<git commit sha>"
+  source                  = "git::https://github.com/protonmedia/terraform_modules.git//kms_key?ref=<git commit sha>"
   description             = "Key used to encrypt my CloudWatch Logs"
   alias                   = "my-application"
   deletion_window_in_days = 14 # optional (default 7)

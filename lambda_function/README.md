@@ -24,7 +24,7 @@ data "aws_iam_policy_document" "my_policy" {
 }
 
 module "lambda" {
-  source                  = "git@github.com:protonmedia/terraform_modules.git//lambda_function?ref=<git commit sha>"
+  source                  = "git::https://github.com/protonmedia/terraform_modules.git//lambda_function?ref=<git commit sha>"
   name                    = "hello-world"
   description             = "This is a hello world lambda function"
   architecture            = "x86_64" # optional (defaults to x86_64)

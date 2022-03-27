@@ -13,7 +13,7 @@ This module deploys the following resources:
 
 ```
 module "s3_bucket" {
-  source                        = "git@github.com:protonmedia/terraform_modules.git//encrypted_s3_bucket?ref=<git commit sha>"
+  source                        = "git::https://github.com/protonmedia/terraform_modules.git//encrypted_s3_bucket?ref=<git commit sha>"
   name                          = "my-bucket"
   number_of_days_objects_expire = 1 # optional
 }
@@ -26,3 +26,4 @@ module "s3_bucket" {
 | bucket_id | `my-bucket` |
 | bucket_arn | `arn:aws:s3:::my-bucket` |
 | bucket_domain_name | `my-bucket.s3.amazonaws.com` |
+| bucket_regional_domain_name | `my-bucket.s3.us-east-1.amazonaws.com` |

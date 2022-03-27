@@ -10,7 +10,7 @@ This module deploys the following resources:
 
 ```
 module "sns_topic" {
-  source                  = "git@github.com:protonmedia/terraform_modules.git//encrypted_sns_topic?ref=<git commit sha>"
+  source                  = "git::https://github.com/protonmedia/terraform_modules.git//encrypted_sns_topic?ref=<git commit sha>"
   name                    = "MyTopic"
 }
 ```
