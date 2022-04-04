@@ -12,10 +12,24 @@ This module deploys the following resources:
 ## Usage
 
 ```
+data "aws_iam_policy_document" "my_bucket_policy" {
+  statement {
+    sid = "CloudFront"
+    principals {
+      type        = "AWS"
+      identifiers = ["arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ABCDE123456789"]
+    }
+    actions   = ["GetObject"]
+    resources = ["arn:aws:s3:::my-bucket/*"]
+    effect    = "Allow"
+  }
+}
+
 module "s3_bucket" {
   source                        = "git::https://github.com/protonmedia/terraform_modules.git//encrypted_s3_bucket?ref=<git commit sha>"
   name                          = "my-bucket"
   number_of_days_objects_expire = 1 # optional
+  policy                        = jsonencode(data.aws_iam_policy_document.my_bucket_policy.json)
 }
 ```
 

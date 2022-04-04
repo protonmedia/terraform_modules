@@ -31,3 +31,10 @@ data "aws_iam_policy_document" "prevent_s3_uploads_of_unencrypted_S3_objects" {
     }
   }
 }
+
+data "aws_iam_policy_document" "this" {
+  source_policy_documents = [
+    data.aws_iam_policy_document.prevent_s3_uploads_of_unencrypted_S3_objects.json,
+    jsondecode(var.bucket_policy)
+  ]
+}

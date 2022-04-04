@@ -18,7 +18,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
 
 resource "aws_s3_bucket_policy" "this" {
   bucket = aws_s3_bucket.this.id
-  policy = data.aws_iam_policy_document.prevent_s3_uploads_of_unencrypted_S3_objects.json
+  policy = data.aws_iam_policy_document.this.json
 }
 
 resource "aws_s3_bucket_public_access_block" "this" {
