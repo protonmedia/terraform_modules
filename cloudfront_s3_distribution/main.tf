@@ -69,7 +69,7 @@ resource "aws_cloudwatch_log_group" "this" {
 
 resource "aws_wafv2_web_acl" "this" {
   name        = local.alternate_domain_name_sanitized
-  description = "WAF for CloudFront ${var.alternate_domain_name}"
+  description = "WAF for CloudFront ${local.alternate_domain_name_sanitized}"
   scope       = "CLOUDFRONT"
 
   default_action {
