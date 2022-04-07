@@ -20,7 +20,7 @@ resource "aws_wafv2_ip_set" "this" {
 }
 
 resource "aws_cloudfront_distribution" "this" {
-  aliases             = concat([var.alternate_domain_name], [var.subject_alternative_names])
+  aliases             = concat([var.alternate_domain_name], var.subject_alternative_names)
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "index.html"
