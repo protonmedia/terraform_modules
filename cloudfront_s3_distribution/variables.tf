@@ -3,9 +3,15 @@ variable "s3_bucket_name" {
   description = "S3 Bucket Name."
 }
 
-variable "alternate_domain_names" {
+variable "alternate_domain_name" {
+  type        = string
+  description = "Alternate domain name."
+}
+
+variable "subject_alternative_names" {
   type        = list(string)
-  description = "Alternate domain names."
+  description = "List of subject alternative domain names."
+  default     = []
 }
 
 variable "bucket_regional_domain_name" {

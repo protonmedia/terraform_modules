@@ -1,8 +1,8 @@
 ## Dependencies
 
 resource "aws_acm_certificate" "this" {
-  domain_name               = var.alternate_domain_names[0]
-  subject_alternative_names = var.alternate_domain_names
+  domain_name               = var.alternate_domain_name
+  subject_alternative_names = var.subject_alternative_names
   validation_method         = "DNS"
   lifecycle {
     create_before_destroy = true
@@ -20,7 +20,7 @@ resource "aws_wafv2_ip_set" "this" {
 }
 
 resource "aws_cloudfront_distribution" "this" {
-  aliases             = var.alternate_domain_names
+  aliases             = var.alternate_domain_name
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "index.html"
@@ -255,5 +255,3 @@ resource "aws_wafv2_web_acl_logging_configuration" "this" {
     }
   }
 }
-
-
