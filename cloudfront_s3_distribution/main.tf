@@ -1,8 +1,9 @@
 ## Dependencies
 
 resource "aws_acm_certificate" "this" {
-  domain_name       = var.alternate_domain_name
-  validation_method = "DNS"
+  domain_name               = var.alternate_domain_names[0]
+  subject_alternative_names = var.alternate_domain_names
+  validation_method         = "DNS"
   lifecycle {
     create_before_destroy = true
   }
