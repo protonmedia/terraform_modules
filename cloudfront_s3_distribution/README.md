@@ -28,9 +28,15 @@ resource "aws_cloudfront_origin_access_identity" "cloudfront_oai" {
 }
 
 module "s3_bucket" {
-  source        = "git::https://github.com/protonmedia/terraform_modules.git//encrypted_s3_bucket?ref=05bea9a"
+  source        = "git::https://github.com/protonmedia/terraform_modules.git//encrypted_s3_bucket?ref=<COMMIT>"
   name          = 'my-bucket'
   bucket_policy = jsonencode(data.aws_iam_policy_document.cloudfront_bucket_policy.json)
+}
+
+module "cloudfront_function" {
+  source                = "git::https://github.com/protonmedia/terraform_modules.git//cloudfront_function?ref=<COMMIT>"
+  function_path         = "${path.module}/function.js"
+  function_name         = "my-func"
 }
 
 module "cloudfront" {
@@ -41,8 +47,13 @@ module "cloudfront" {
   bucket_regional_domain_name     = module.s3_bucket.bucket_regional_domain_name
   whitelisted_ip_addresses        = ["1.2.3.4/32"]
   cloudfront_access_identity_path = aws_cloudfront_origin_access_identity.cloudfront_oai.cloudfront_access_identity_path
+  function_associations           = [
+    {
+      event_type   = "viewer-request"
+      function_arn = module.cloudfront_function.function_arn
+    }
+  ]
 }
-
 ```
 
 ## Outputs
