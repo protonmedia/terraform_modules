@@ -40,8 +40,8 @@ resource "aws_cloudfront_distribution" "this" {
     dynamic "function_association" {
       for_each = var.function_associations
       content {
-        event_type   = function_associations.value["event_type"]
-        function_arn = function_associations.value["function_arn"]
+        event_type   = function_association.value["event_type"]
+        function_arn = function_association.value["function_arn"]
       }
     }
   }
