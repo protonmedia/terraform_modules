@@ -36,6 +36,7 @@ module "s3_bucket" {
 module "cloudfront" {
   source                          = "git::https://github.com/protonmedia/terraform_modules.git//cloudfront_s3_distribution?ref=<COMMIT>"
   s3_bucket_name                  = 'my-bucket'
+  s3_folder_path                  = '/my-subfolder'
   alternate_domain_name           = ['example.com']
   bucket_regional_domain_name     = module.s3_bucket.bucket_regional_domain_name
   whitelisted_ip_addresses        = ["1.2.3.4/32"]

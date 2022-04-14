@@ -3,6 +3,12 @@ variable "s3_bucket_name" {
   description = "S3 Bucket Name."
 }
 
+variable "s3_folder_path" {
+  type        = string
+  description = "S3 Folder Path."
+  default     = ""
+}
+
 variable "alternate_domain_name" {
   type        = string
   description = "Alternate domain name."
@@ -27,5 +33,14 @@ variable "cloudfront_access_identity_path" {
 variable "whitelisted_ip_addresses" {
   type        = list(string)
   description = "List of IP addresses with access to the CloudFront Distribution."
+  default     = []
+}
+
+variable "function_associations" {
+  type = list(object({
+    event_type   = string
+    function_arn = string
+  }))
+  description = "CloudFront Functions"
   default     = []
 }

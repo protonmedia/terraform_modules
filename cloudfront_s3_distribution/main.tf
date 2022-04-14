@@ -36,11 +36,20 @@ resource "aws_cloudfront_distribution" "this" {
     compress                   = true
     response_headers_policy_id = data.aws_cloudfront_response_headers_policy.managed_cors_preflight_and_sec_policy.id
     viewer_protocol_policy     = "redirect-to-https"
+
+    dynamic "function_association" {
+      for_each = var.function_associations
+      content {
+        event_type   = function_associations.value["event_type"]
+        function_arn = function_associations.value["function_arn"]
+      }
+    }
   }
 
   origin {
     domain_name = var.bucket_regional_domain_name
     origin_id   = var.bucket_regional_domain_name
+    origin_path = var.s3_folder_path
 
     s3_origin_config {
       origin_access_identity = var.cloudfront_access_identity_path
